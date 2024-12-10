@@ -51,7 +51,7 @@ export class Example extends LitElement {
     { text: 'Edit' },
     { text: 'Delete', className: 'text-error' },
   ];
-  @state() private showUserDialog: boolean = false;
+
   @state() private viewUserData: User | null = null;
 
   @state()
