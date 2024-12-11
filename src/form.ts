@@ -28,7 +28,7 @@ import '@vaadin/icon';
 import '@vaadin/notification';
 import { dialogHeaderRenderer, dialogRenderer } from '@vaadin/dialog/lit.js';
 import '@vaadin/vaadin-lumo-styles/vaadin-iconset';
-
+import type { TextField, TextFieldValidatedEvent } from '@vaadin/text-field';
 @customElement('form-layout-basic')
 export class Example extends LitElement {
   static styles = [buttonStyles];
@@ -42,7 +42,10 @@ export class Example extends LitElement {
   @state() qualification = '';
   @state() college: string[] = [];
   @state() showAlert: boolean = false;
-  @state() errorMsg: string = '';
+ 
+  @state()
+  private errorMessage :string= '';
+
   @state() users: User[] = [];
   @state() private currentUserId: string | null = null; // Track current user being edited
   @state()
@@ -89,7 +92,27 @@ export class Example extends LitElement {
                  .value="${this.fullName}"
                 @change="${(e: Event) => {
                   this.fullName = (e.target as HTMLInputElement).value;
-                }}"
+                }
+                
+                }"
+                 minlength="5"
+                 maxlength="18"
+                .errorMessage="${this.errorMessage}"
+        @validated="${(event: TextFieldValidatedEvent) => {
+          const field = event.target as TextField;
+          const { validity } = field.inputElement as HTMLInputElement;
+          if (validity.valueMissing) {
+            this.errorMessage = 'Field is required';
+          } else if (validity.tooShort) {
+            this.errorMessage = `Minimum length is ${field.minlength} characters`;
+          } else if (validity.tooLong) {
+            this.errorMessage = `Maximum length is ${field.maxlength} characters`;
+          } else if (validity.patternMismatch) {
+            this.errorMessage = 'Invalid phone number format';
+          } else {
+            this.errorMessage = '';
+          }
+        }}"
               ></vaadin-text-field>
 
               <vaadin-email-field
@@ -251,6 +274,14 @@ export class Example extends LitElement {
         value="${this.viewUserData?.email || ''}"  <!-- Use viewUserData -->
         readonly
       ></vaadin-email-field>
+
+      <vaadin-text-area
+        label="Date Of Birth"
+        value="${this.viewUserData?.dob.toString().split('T')[0] || ''}"  <!-- Join the languages into a string -->
+        readonly
+        style="padding-top: 0;"
+      ></vaadin-text-area>
+
       <vaadin-text-area
         label="Languages Known"
         value="${this.viewUserData?.languages.join(', ') || ''}"  <!-- Join the languages into a string -->
@@ -274,7 +305,7 @@ export class Example extends LitElement {
     
     fetch(`http://localhost:4000/users1/${id}`)
       .then((response) => response.json())
-      .then((user: any) => {
+      .then((user: User) => {
         console.log('Fetched User:', user); 
 
         function formatDate(date: string | number | Date) {
