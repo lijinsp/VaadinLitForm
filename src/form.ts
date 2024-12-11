@@ -18,6 +18,8 @@ import '@vaadin/button';
 import '@vaadin/grid';
 import '@vaadin/context-menu';
 import '@vaadin/text-area';
+import '@vaadin/icons';
+import '@vaadin/vaadin-lumo-styles/vaadin-iconset.js';
 import { columnBodyRenderer } from '@vaadin/grid/lit.js';
 import type { ContextMenuItem } from '@vaadin/context-menu';
 import '@vaadin/dialog';  // Added dialog import
@@ -226,7 +228,7 @@ export class Example extends LitElement {
                         }
                       }}"
                     >
-                      <vaadin-button>Actions</vaadin-button>
+                      <vaadin-button><vaadin-icon icon="vaadin:menu"></vaadin-icon></vaadin-button>
                     </vaadin-context-menu>
                   `,
                 [],
