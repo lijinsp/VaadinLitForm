@@ -1,8 +1,15 @@
 {
+<<<<<<< HEAD
   "name": "lit-form",
   "description": "Webcomponent lit-form following open-wc recommendations",
   "license": "MIT",
   "author": "lit-form",
+=======
+  "name": "registration-form",
+  "description": "Webcomponent registration-form following open-wc recommendations",
+  "license": "MIT",
+  "author": "registration-form",
+>>>>>>> 3f0e93ced2c1a2ffce1c058a678a34de2c40bf62
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -13,8 +20,16 @@
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"web-dev-server\""
   },
   "dependencies": {
+<<<<<<< HEAD
     "@vaadin/vaadin": "^24.5.8",
     "lit": "^3.1.4"
+=======
+    "@vaadin/form-layout": "^24.5.5",
+    "@vaadin/vaadin": "^24.5.7",
+    "@vaadin/vaadin-lumo-styles": "^24.5.5",
+    "lit": "^3.1.4",
+    "validator": "^13.12.0"
+>>>>>>> 3f0e93ced2c1a2ffce1c058a678a34de2c40bf62
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",

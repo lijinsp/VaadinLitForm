@@ -1,6 +1,10 @@
 MIT License
 
+<<<<<<< HEAD
 Copyright (c) 2024 lit-form
+=======
+Copyright (c) 2024 registration-form
+>>>>>>> 3f0e93ced2c1a2ffce1c058a678a34de2c40bf62
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
